@@ -1,7 +1,9 @@
+import { Posts } from './pages/Posts'
+
 export const App = () => {
   return (
     <>
-      <h1>hello world</h1>
+      <Posts />
     </>
   )
 }
