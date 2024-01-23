@@ -8,11 +8,18 @@ export const Posts = styled.div`
   margin: 3rem auto 14rem;
 `
 
-export const Container = styled.div`
+export const Container = styled.a`
   max-width: 26rem;
   background-color: ${({ theme }) => theme.COLORS['base-post']};
   padding: 2rem;
   border-radius: 0.625rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.COLORS['base-label']};
+  }
 `
 
 export const Header = styled.header`
@@ -36,4 +43,5 @@ export const Header = styled.header`
 
 export const Content = styled.p`
   padding: 1rem 0;
+  color: ${({ theme }) => theme.COLORS['base-text']};
 `

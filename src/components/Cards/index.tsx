@@ -1,6 +1,6 @@
 import { Container, Header, Content, Posts } from './styles'
 
-export const Post = () => {
+export const Cards = () => {
   return (
     <Posts>
       <Container>
@@ -14,6 +14,7 @@ export const Post = () => {
           list the built-in data structures available in...
         </Content>
       </Container>
+
       <Container>
         <Header>
           <h3>JavaScript data types and data structures</h3>

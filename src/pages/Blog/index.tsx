@@ -1,16 +1,14 @@
-import { Cover } from '../../components/Cover'
-import { Post } from '../../components/Post'
+import { Cards } from '../../components/Cards'
 import { Profile } from '../../components/Profile'
 import { Search } from '../../components/Search'
 import { Container } from './styles'
 
-export const Posts = () => {
+export const Blog = () => {
   return (
     <Container>
-      <Cover />
       <Profile />
       <Search />
-      <Post />
+      <Cards />
     </Container>
   )
 }
