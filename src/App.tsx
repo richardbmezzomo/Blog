@@ -1,11 +1,11 @@
 import { Cover } from './components/Cover'
-import { Post } from './pages/Post'
+import { Blog } from './pages/Blog'
 
 export const App = () => {
   return (
     <>
       <Cover />
-      <Post />
+      <Blog />
     </>
   )
 }
