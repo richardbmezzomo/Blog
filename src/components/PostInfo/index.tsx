@@ -12,12 +12,13 @@ import {
   Header,
   Title,
   Bio,
-  Date,
   Link,
   Button,
   PostContent,
 } from './styles'
 import { NavLink } from 'react-router-dom'
+import { formatDistance } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 
 interface Issue {
   title: string
@@ -48,6 +49,16 @@ export const PostInfo: React.FC<PostInfoProps> = ({ issueNumber }) => {
     return null
   }
 
+  function formatTimeAgo(date: Date) {
+    let timeAgo = formatDistance(date, new Date(), {
+      addSuffix: true,
+      locale: ptBR,
+    })
+    timeAgo = timeAgo.replace('cerca de ', '')
+    return timeAgo.charAt(0).toUpperCase() + timeAgo.slice(1)
+  }
+
+  const createdAt = formatTimeAgo(new Date(issue.created_at))
   return (
     <>
       <Container>
@@ -74,7 +85,7 @@ export const PostInfo: React.FC<PostInfoProps> = ({ issueNumber }) => {
           </div>
           <div>
             <FontAwesomeIcon icon={faCalendarDay} />
-            <Date>{issue.created_at}</Date>
+            <span>{createdAt}</span>
           </div>
         </Bio>
       </Container>
