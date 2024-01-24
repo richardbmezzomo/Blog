@@ -5,6 +5,7 @@ import {
   faArrowUpRightFromSquare,
   faCalendarDay,
   faChevronLeft,
+  faComment,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -25,6 +26,7 @@ interface Issue {
   body: string
   created_at: string
   number: number
+  comments: number
 }
 
 interface PostInfoProps {
@@ -86,6 +88,10 @@ export const PostInfo: React.FC<PostInfoProps> = ({ issueNumber }) => {
           <div>
             <FontAwesomeIcon icon={faCalendarDay} />
             <span>{createdAt}</span>
+          </div>
+          <div>
+            <FontAwesomeIcon icon={faComment} />
+            <span>{issue.comments} comentários</span>
           </div>
         </Bio>
       </Container>
