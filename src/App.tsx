@@ -1,12 +1,13 @@
+import { BrowserRouter } from 'react-router-dom'
 import { Cover } from './components/Cover'
-import { Blog } from './pages/Blog'
-import { Post } from './pages/Post'
+
+import { Router } from './Router'
 
 export const App = () => {
   return (
-    <>
+    <BrowserRouter>
       <Cover />
-      <Post />
-    </>
+      <Router />
+    </BrowserRouter>
   )
 }

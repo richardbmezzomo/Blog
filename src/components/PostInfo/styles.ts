@@ -28,6 +28,11 @@ export const Button = styled.button`
   transition: filter 0.2s;
   cursor: pointer;
 
+  a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.COLORS.blue};
+  }
+
   &:hover {
     filter: brightness(0.8);
   }

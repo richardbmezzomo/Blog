@@ -6,21 +6,24 @@ export const Posts = styled.div`
   gap: 2rem;
   max-width: 52rem;
   margin: 3rem auto 14rem;
-`
 
-export const Container = styled.a`
-  max-width: 26rem;
-  background-color: ${({ theme }) => theme.COLORS['base-post']};
-  padding: 2rem;
-  border-radius: 0.625rem;
-  text-decoration: none;
-  cursor: pointer;
-  transition: box-shadow 0.2s ease-in-out;
+  a {
+    background-color: ${({ theme }) => theme.COLORS['base-post']};
+    max-width: 26rem;
+    border-radius: 0.625rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease-in-out;
 
-  &:hover {
-    box-shadow: 0 0 0 2px ${({ theme }) => theme.COLORS['base-label']};
+    padding: 2rem;
+
+    &:hover {
+      box-shadow: 0 0 0 2px ${({ theme }) => theme.COLORS['base-label']};
+    }
   }
 `
+
+export const Container = styled.div``
 
 export const Header = styled.header`
   display: flex;

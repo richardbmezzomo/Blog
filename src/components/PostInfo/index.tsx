@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+import { api } from '../../lib/axios'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import {
   faArrowUpRightFromSquare,
@@ -15,22 +17,56 @@ import {
   Button,
   PostContent,
 } from './styles'
+import { NavLink } from 'react-router-dom'
 
-export const PostInfo = () => {
+interface Issue {
+  title: string
+  body: string
+  created_at: string
+  number: number
+}
+
+interface PostInfoProps {
+  issueNumber: string
+}
+
+export const PostInfo: React.FC<PostInfoProps> = ({ issueNumber }) => {
+  const [issue, setIssue] = useState<Issue | null>(null)
+
+  useEffect(() => {
+    const loadIssue = async () => {
+      const response = await api.get(
+        `/repos/richardmezzomo/github-blog/issues/${issueNumber}`,
+      )
+      setIssue(response.data)
+    }
+
+    loadIssue()
+  }, [issueNumber])
+
+  if (!issue) {
+    return null
+  }
+
   return (
     <>
       <Container>
         <Header>
           <Button>
             <FontAwesomeIcon icon={faChevronLeft} />
-            <div>Voltar</div>
+            <div>
+              <NavLink to={'/'}>Voltar</NavLink>
+            </div>
           </Button>
-          <Link href="">
+          <Link
+            href={`https://github.com/richardmezzomo/github-blog/issues/${issue.number}`}
+            target="_blank"
+          >
             <span>ver no github</span>
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </Link>
         </Header>
-        <Title>JavaScript data types and data structures</Title>
+        <Title>{issue.title}</Title>
         <Bio>
           <div>
             <FontAwesomeIcon icon={faGithub} />
@@ -38,22 +74,12 @@ export const PostInfo = () => {
           </div>
           <div>
             <FontAwesomeIcon icon={faCalendarDay} />
-            <Date>Há 1 dia</Date>
+            <Date>{issue.created_at}</Date>
           </div>
         </Bio>
       </Container>
       <PostContent>
-        <p>
-          Programming languages all have built-in data structures, but these
-          often differ from one language to another. This article attempts to
-          list the built-in data structures available in JavaScript and what
-          properties they have. These can be used to build other data
-          structures. Wherever possible, comparisons with other languages are
-          drawn. Dynamic typing JavaScript is a loosely typed and dynamic
-          language. Variables in JavaScript are not directly associated with any
-          particular value type, and any variable can be assigned (and
-          re-assigned) values of all types:
-        </p>
+        <p>{issue.body}</p>
       </PostContent>
     </>
   )
