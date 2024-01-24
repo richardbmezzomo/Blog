@@ -19,16 +19,24 @@ interface Issue {
   created_at: string
   number: number
 }
+interface ApiResponse {
+  total_count: number
+  items: Issue[]
+}
 
 export const Cards = () => {
-  const [issues, setIssues] = useState<Issue[]>([])
+  const [response, setResponse] = useState<ApiResponse>({
+    total_count: 0,
+    items: [],
+  })
 
   const loadIssues = async () => {
     const response = await api.get(
       '/search/issues?q=repo:richardmezzomo/github-blog',
     )
 
-    setIssues(response.data.items)
+    setResponse(response.data)
+    console.log(response.data)
   }
 
   useEffect(() => {
@@ -50,7 +58,7 @@ export const Cards = () => {
         <div>
           <Publications>
             <h2>Publicações</h2>
-            <span>6 publicações</span>
+            <span>{response.total_count} publicações</span>
           </Publications>
           <InputContainer>
             <input type="text" placeholder="Buscar conteúdo" />
@@ -58,7 +66,7 @@ export const Cards = () => {
         </div>
       </SearchContainer>
       <Posts>
-        {issues.map((issue) => {
+        {response.items.map((issue) => {
           const preview = issue.body.substring(0, 150) + '...'
           const createdAt = formatTimeAgo(new Date(issue.created_at))
           return (
