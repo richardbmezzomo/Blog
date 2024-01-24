@@ -17,6 +17,7 @@ export const ProfileContainer = styled.section`
   background: ${({ theme }) => theme.COLORS['base-profile']};
   border-radius: 0.625rem;
   box-shadow: 0px 2px 28px 0px rgba(0, 0, 0, 0.2);
+
   img {
     width: 150px;
     height: 150px;

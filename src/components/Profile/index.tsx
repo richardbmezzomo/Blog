@@ -5,37 +5,52 @@ import {
   faArrowUpRightFromSquare,
   faUserGroup,
 } from '@fortawesome/free-solid-svg-icons'
+import { useEffect, useState } from 'react'
+import { api } from '../../lib/axios'
+
+interface User {
+  name: string
+  login: string
+  avatar_url: string
+  html_url: string
+  followers: number
+  bio: string
+}
 
 export const Profile = () => {
+  const [user, setUser] = useState<User | null>(null)
+
+  const loadUser = async () => {
+    const response = await api.get('/users/richardmezzomo')
+
+    setUser(response.data)
+  }
+
+  useEffect(() => {
+    loadUser()
+  }, [])
+
   return (
     <ProfileWrap>
       <ProfileContainer>
-        <img src="https://github.com/richardmezzomo.png" alt="" />
+        <img src={user?.avatar_url} alt="" />
         <div>
           <ProfileContent>
-            <h1>Richard Mezzomo</h1>
-            <a
-              href="https://github.com/richardmezzomo"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <h1>{user?.name}</h1>
+            <a href={user?.html_url} target="_blank" rel="noreferrer">
               <span>GITHUB</span>
               <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
             </a>
           </ProfileContent>
-          <p>
-            Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-            viverra massa quam dignissim aenean malesuada suscipit. Nunc,
-            volutpat pulvinar vel mass.
-          </p>
+          <p>{user?.bio}</p>
           <Infos>
             <div>
               <FontAwesomeIcon icon={faGithub} />
-              <span>richardmezzomo</span>
+              <span>{user?.login}</span>
             </div>
             <div>
               <FontAwesomeIcon icon={faUserGroup} />
-              <span>32 seguidores</span>
+              <span>{user?.followers} seguidores</span>
             </div>
           </Infos>
         </div>

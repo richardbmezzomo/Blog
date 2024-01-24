@@ -28,6 +28,11 @@ export const Button = styled.button`
   transition: filter 0.2s;
   cursor: pointer;
 
+  a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.COLORS.blue};
+  }
+
   &:hover {
     filter: brightness(0.8);
   }
@@ -72,4 +77,9 @@ export const Bio = styled.div`
   }
 `
 
-export const Date = styled.span``
+export const PostContent = styled.p`
+  padding: 2.5rem 2rem;
+  max-width: 52rem;
+  margin: 0 auto;
+  color: ${({ theme }) => theme.COLORS['base-text']};
+`
