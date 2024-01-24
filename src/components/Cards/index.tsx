@@ -1,7 +1,15 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { api } from '../../lib/axios'
-import { Container, Header, Content, Posts } from './styles'
+import {
+  Container,
+  Header,
+  Content,
+  Posts,
+  Publications,
+  SearchContainer,
+  InputContainer,
+} from './styles'
 import { formatDistance } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
@@ -37,22 +45,35 @@ export const Cards = () => {
   }
 
   return (
-    <Posts>
-      {issues.map((issue) => {
-        const preview = issue.body.substring(0, 150) + '...'
-        const createdAt = formatTimeAgo(new Date(issue.created_at))
-        return (
-          <Link to={`/issue/${issue.number}`} key={issue.number}>
-            <Container>
-              <Header>
-                <h3>{issue.title}</h3>
-                <span>{createdAt}</span>
-              </Header>
-              <Content>{preview}</Content>
-            </Container>
-          </Link>
-        )
-      })}
-    </Posts>
+    <>
+      <SearchContainer>
+        <div>
+          <Publications>
+            <h2>Publicações</h2>
+            <span>6 publicações</span>
+          </Publications>
+          <InputContainer>
+            <input type="text" placeholder="Buscar conteúdo" />
+          </InputContainer>
+        </div>
+      </SearchContainer>
+      <Posts>
+        {issues.map((issue) => {
+          const preview = issue.body.substring(0, 150) + '...'
+          const createdAt = formatTimeAgo(new Date(issue.created_at))
+          return (
+            <Link to={`/issue/${issue.number}`} key={issue.number}>
+              <Container>
+                <Header>
+                  <h3>{issue.title}</h3>
+                  <span>{createdAt}</span>
+                </Header>
+                <Content>{preview}</Content>
+              </Container>
+            </Link>
+          )
+        })}
+      </Posts>
+    </>
   )
 }
