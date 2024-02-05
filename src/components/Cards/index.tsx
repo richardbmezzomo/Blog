@@ -15,6 +15,7 @@ import { ptBR } from 'date-fns/locale'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import Markdown from 'react-markdown'
 
 interface Issue {
   title: string
@@ -43,7 +44,7 @@ export const Cards = () => {
 
   const loadIssues = async (data: { searchTerm?: string }) => {
     const response = await api.get(
-      `/search/issues?q=${data.searchTerm ? data.searchTerm + '+' : ''}repo:richardmezzomo/github-blog`,
+      `/search/issues?q=${data.searchTerm ? data.searchTerm + '+' : ''}label:Article+repo:richardmezzomo/github-blog`,
     )
 
     setResponse(response.data)
@@ -96,7 +97,9 @@ export const Cards = () => {
                   <h3>{issue.title}</h3>
                   <span>{createdAt}</span>
                 </Header>
-                <Content>{preview}</Content>
+                <Content>
+                  <Markdown>{preview}</Markdown>
+                </Content>
               </Container>
             </Link>
           )

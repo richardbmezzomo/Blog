@@ -20,6 +20,7 @@ import {
 import { NavLink } from 'react-router-dom'
 import { formatDistance } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
+import Markdown from 'react-markdown'
 
 interface Issue {
   title: string
@@ -96,7 +97,7 @@ export const PostInfo: React.FC<PostInfoProps> = ({ issueNumber }) => {
         </Bio>
       </Container>
       <PostContent>
-        <p>{issue.body}</p>
+        <Markdown>{issue.body}</Markdown>
       </PostContent>
     </>
   )
