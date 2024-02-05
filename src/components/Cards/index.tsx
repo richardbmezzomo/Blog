@@ -12,6 +12,9 @@ import {
 } from './styles'
 import { formatDistance } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
+import { z } from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 interface Issue {
   title: string
@@ -24,23 +27,34 @@ interface ApiResponse {
   items: Issue[]
 }
 
+const schema = z.object({
+  searchTerm: z.string().optional(),
+})
+
 export const Cards = () => {
   const [response, setResponse] = useState<ApiResponse>({
     total_count: 0,
     items: [],
   })
 
-  const loadIssues = async () => {
+  const { register, handleSubmit } = useForm({
+    resolver: zodResolver(schema),
+  })
+
+  const loadIssues = async (data: { searchTerm?: string }) => {
     const response = await api.get(
-      '/search/issues?q=repo:richardmezzomo/github-blog',
+      `/search/issues?q=${data.searchTerm ? data.searchTerm + '+' : ''}repo:richardmezzomo/github-blog`,
     )
 
     setResponse(response.data)
-    console.log(response.data)
+  }
+
+  const onSubmit = (data: { searchTerm?: string }) => {
+    loadIssues(data)
   }
 
   useEffect(() => {
-    loadIssues()
+    loadIssues({})
   }, [])
 
   function formatTimeAgo(date: Date) {
@@ -60,9 +74,15 @@ export const Cards = () => {
             <h2>Publicações</h2>
             <span>{response.total_count} publicações</span>
           </Publications>
-          <InputContainer>
-            <input type="text" placeholder="Buscar conteúdo" />
-          </InputContainer>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <InputContainer>
+              <input
+                {...register('searchTerm')}
+                type="text"
+                placeholder="Buscar conteúdo"
+              />
+            </InputContainer>
+          </form>
         </div>
       </SearchContainer>
       <Posts>
