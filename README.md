@@ -1,30 +1,42 @@
-# React + TypeScript + Vite
+# GitHub Blog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um projeto de blog que utiliza a API do GitHub para buscar e exibir issues como artigos de blog. A seguir, apresento os recursos, as tecnologias utilizadas, e as instruções para executar o projeto.
 
-Currently, two official plugins are available:
+## Recursos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Busca de Artigos:** Utilize a barra de busca para encontrar artigos específicos por termos-chave.
+- **Exibição com Pré-visualização:** Os artigos são apresentados com uma pré-visualização e um link para a issue completa no GitHub.
+- **Filtragem por Label:** Filtre os artigos com base em etiquetas (labels) específicas.
 
-## Expanding the ESLint configuration
+## Tecnologias Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React:** Biblioteca JavaScript para construção de interfaces de usuário.
+- **TypeScript:** Adiciona tipagem estática ao JavaScript, melhorando a robustez do código.
+- **Axios:** Cliente HTTP para realizar requisições à API do GitHub.
+- **date-fns:** Biblioteca para manipulação de datas em JavaScript.
+- **react-router-dom:** Facilita a navegação entre páginas em aplicações React.
+- **zod:** Biblioteca para validação de dados em TypeScript.
+- **react-hook-form:** Biblioteca para gerenciamento de formulários em React.
 
-- Configure the top-level `parserOptions` property like this:
+## Como Executar o Projeto
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+1. **Clone o Repositório:**
+   ```bash
+   git clone https://github.com/seu-usuario/github-blog.git
+   
+2. **Acesse o Diretório do Projeto:**
+    ```bash
+    cd github-blog
+    
+3. **Instale as Dependências:**
+    ```bash
+    npm install
+    
+4. **Inicie o Projeto:**
+   ```bash
+   npm install
+   
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Contribuições
+
+Contribuições são bem-vindas! Sinta-se à vontade para enviar pull requests e relatar problemas (issues) para melhorar este projeto.
