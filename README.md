@@ -22,20 +22,19 @@ Este é um projeto de blog que utiliza a API do GitHub para buscar e exibir issu
 
 1. **Clone o Repositório:**
    ```bash
-   git clone https://github.com/seu-usuario/github-blog.git
+   git clone https://github.com/richardbmezzomo/Blog.git
    
 2. **Acesse o Diretório do Projeto:**
     ```bash
-    cd github-blog
+    cd Blog
     
 3. **Instale as Dependências:**
     ```bash
     npm install
-    
+
 4. **Inicie o Projeto:**
    ```bash
    npm run dev
-   
 
 ## Contribuições
 
