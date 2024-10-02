@@ -34,7 +34,7 @@ Este é um projeto de blog que utiliza a API do GitHub para buscar e exibir issu
     
 4. **Inicie o Projeto:**
    ```bash
-   npm install
+   npm run dev
    
 
 ## Contribuições
