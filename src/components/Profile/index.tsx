@@ -21,7 +21,7 @@ export const Profile = () => {
   const [user, setUser] = useState<User | null>(null)
 
   const loadUser = async () => {
-    const response = await api.get('/users/richardmezzomo')
+    const response = await api.get('/users/richardbmezzomo')
 
     setUser(response.data)
   }
